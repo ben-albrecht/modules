@@ -1,0 +1,75 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.1
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem 4.1, personal development version."
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict qchem
+
+set root $::env(apps)/$modfile
+
+setenv QCSCRATCH   $::env(scratch)/qchem
+setenv QC          $root
+setenv QCAUX       $root/../qcaux
+setenv QC_EXT_LIBS /home/software/qc_ext_libs
+setenv QCREF       $root/../qcref
+setenv QCPLATFORM  LINUX_Ix86
+setenv QCSOURCE    $root
+
+prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR vim
+
+# Compiling
+
+setenv QCHEM_CXX_FLAGS      -O0
+setenv QCHEM_Fortran_FLAGS  -O0
+
+# Test Jobs
+# tmp
+setenv QCREF    /home/eric/opt/apps/qchem/qchem_dailyref
+
+
+# Compiling 
+#export QCHEM_CXX_FLAGS="-O0"
+#export QCHEM_Fortran_FLAGS="-O0"
+# SCRATCH
+#export QCSCRATCH=$SCRATCH
+# Select your branch here ...
+# export QC=/home/eric/opt/apps/qchem/lambrecht_svn_only
+#export QC=/home/ben/qchem/qchem
+#export QCSOURCE=$QC
+#export PATH=$PATH:$QC/bin
+#export QCAUX=/home/software/qcaux40/ # Needs to be updated
+#export QCAUX=/home/eric/opt/apps/qchem/qcaux
+#export QC_EXT_LIBS=/home/software/qc_ext_libs
+
+# Test Jobs
+#export QCREF=/home/eric/opt/apps/qchem/qchem_dailyref
+#export QCPLATFORM=LINUX_Ix86
