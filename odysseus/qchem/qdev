@@ -53,7 +53,7 @@ setenv QCHEM_Fortran_FLAGS  -O0
 
 # Test Jobs
 # tmp
-setenv QCREF    /home/eric/opt/apps/qchem/qchem_dailyref
+setenv QCREF    /home/ben/opt/apps/qchem/qchem_dailyref
 
 
 # Compiling 
