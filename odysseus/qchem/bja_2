@@ -31,7 +31,7 @@ set root $::env(apps)/$modfile
 setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS /home/software/qc_ext_libs
+setenv QC_EXT_LIBS /home/software/libs/qc_ext_libs/ 
 setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
 setenv QCSOURCE    $root
@@ -55,20 +55,3 @@ setenv QCHEM_Fortran_FLAGS  -O0
 setenv QCREF   /home/ben/qchem/qchem_dailyref
 
 
-# Compiling 
-#export QCHEM_CXX_FLAGS="-O0"
-#export QCHEM_Fortran_FLAGS="-O0"
-# SCRATCH
-#export QCSCRATCH=$SCRATCH
-# Select your branch here ...
-# export QC=/home/eric/opt/apps/qchem/lambrecht_svn_only
-#export QC=/home/ben/qchem/qchem
-#export QCSOURCE=$QC
-#export PATH=$PATH:$QC/bin
-#export QCAUX=/home/software/qcaux40/ # Needs to be updated
-#export QCAUX=/home/eric/opt/apps/qchem/qcaux
-#export QC_EXT_LIBS=/home/software/qc_ext_libs
-
-# Test Jobs
-#export QCREF=/home/eric/opt/apps/qchem/qchem_dailyref
-#export QCPLATFORM=LINUX_Ix86

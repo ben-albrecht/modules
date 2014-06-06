@@ -31,7 +31,7 @@ set root $::env(apps)/$modfile
 setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS /home/software/qc_ext_libs
+setenv QC_EXT_LIBS /home/software/libs/qc_ext_libs
 setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
 setenv QCSOURCE    $root
@@ -68,7 +68,7 @@ setenv QCREF    /home/ben/opt/apps/qchem/qchem_dailyref
 #export PATH=$PATH:$QC/bin
 #export QCAUX=/home/software/qcaux40/ # Needs to be updated
 #export QCAUX=/home/eric/opt/apps/qchem/qcaux
-#export QC_EXT_LIBS=/home/software/qc_ext_libs
+#export QC_EXT_LIBS=/home/software/libs/qc_ext_libs
 
 # Test Jobs
 #export QCREF=/home/eric/opt/apps/qchem/qchem_dailyref
