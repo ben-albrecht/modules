@@ -31,7 +31,7 @@ set root $::env(apps)/$modfile
 setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS /home/software/libs/qc_ext_libs
+setenv QC_EXT_LIBS /home/software/libs/qc_ext_libs/ 
 setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
 setenv QCSOURCE    $root
@@ -53,3 +53,5 @@ setenv QCHEM_Fortran_FLAGS  -O0
 
 # Test Jobs
 setenv QCREF   /home/ben/qchem/qchem_dailyref
+
+
