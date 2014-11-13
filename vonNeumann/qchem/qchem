@@ -18,26 +18,34 @@ set ver 4.1
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.1, personal development version."
+module-whatis "Q-Chem 4.2, Lambrecht Group Git Repository"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
+# Check for conflicts
 conflict qchem
 
+# Set $root to $apps/(this file's name)
 set root $::env(apps)/$modfile
 
+# Q-Chem variables for compiling
 setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS /home/software/libs/qc_ext_libs/
+setenv QC_EXT_LIBS $root/../qc_ext_libs
 setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
 setenv QCSOURCE    $root
 
+# External Libs
+setenv ACMLROOT    $QC_EXT_LIBS/ACML
+
+# Add qchem to PATH
 prepend-path PATH  $root/bin
 
+# SVN jubilee stuff
 set svnroot https://jubilee.q-chem.com/svnroot
 setenv SVNROOT  $svnroot
 setenv QCSVN    $svnroot/qchem
