@@ -40,7 +40,7 @@ setenv QCPLATFORM  LINUX_Ix86
 setenv QCSOURCE    $root
 
 # External Libs
-setenv ACMLROOT    $QC_EXT_LIBS/ACML
+setenv ACMLROOT    $::env(QC_EXT_LIBS)/ACML
 
 # Add qchem to PATH
 prepend-path PATH  $root/bin
