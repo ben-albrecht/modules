@@ -1,0 +1,60 @@
+#%Module1.0
+
+# ======================================================================
+# Prerequisite checks
+# ======================================================================
+
+#FUCKING NONE 
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+# modulefile (this file relative to modulefiles root)
+set modfile [ module-info name ] 
+# modulefile subdirectories in a list
+set l_modfile [ split "$modfile" / ]  
+# basename
+set modfile_base [ lindex $l_modfile [ expr [ llength $l_modfile ] - 1 ] ]
+# basename is usually the version number
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Molpro Quantum Chemistry Package, version $ver"
+
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+conflict molpro
+module load intel/2011.12
+module load mkl/2011.12/icc-st-i8
+module load openmpi/1.4.3-intel12
+#module load globalarrays/4.3.3-intel12-openmpi-i8
+#module load hdf5/1.8.5-intel12-openmpi 
+
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root /opt/sam/molpro/2012.1.0/intel12/big
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+setenv MOLPRO_ROOT $root
+
+setenv TMPDIR /tmp/
+
+
+   #setenv MOLPRO_KEY {id=pitt,date=:2013/01/01,version=:2012,mpp=32767,modules=mpp,password=eHDXUB5WK6eJ3Cm8&69Jf1bqi1P3TfBxt}
+   setenv MOLPRO_KEY {id=pitt,date=:2038/01/17,version=:2012,mpp=32767,modules=mpp,password=HN8h7Fcxrue2pBdq&pB2PO4mJw5Am0XGC}
+   prepend-path PATH $root/bin
+
+
+

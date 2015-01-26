@@ -18,20 +18,16 @@ set ver 4.1
 # Documentation
 # ======================================================================
 
-module-whatis "Latest Local Vim Install"
+module-whatis "Q-Chem 4"
 
-# ====================================================================
-# Dependencies
-# ====================================================================
+# we don't need to load *any* external modules, since we're statically linked
+conflict qchem
 
-# Check for conflicts
-conflict vim
+set root /home/dlambrecht/software/qchem4.1.release.ser
 
-# Set $root to $apps/(this file's name)
-set root $::env(apps)/$modfile_base
+setenv QCSCRATCH   $::env(SCRATCH)/qchem
+setenv QC          $root
+setenv QCAUX       $root/../qcaux4
+setenv QC_EXT_LIBS $root/../qc_ext_libs
 
-# Add qchem to PATH
 prepend-path PATH  $root/bin
-
-
-

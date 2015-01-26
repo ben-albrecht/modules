@@ -1,0 +1,37 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.1
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Python2.7.8"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# Check for conflicts
+# conflict python
+
+# Set $root to $apps/(this file's name)
+set root $::env(apps)/$modfile
+
+# Add qchem to PATH
+prepend-path PATH  $root/bin
+
+
+
