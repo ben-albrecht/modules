@@ -14,7 +14,7 @@ set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver 4.1
 
-module-version "default"
+#module-version "default"
 # ======================================================================
 # Documentation
 # ======================================================================
