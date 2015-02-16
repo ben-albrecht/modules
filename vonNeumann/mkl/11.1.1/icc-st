@@ -37,6 +37,10 @@ set lib $root/lib/intel64
 
 setenv MKLROOT $root
 setenv MKL_ROOT $root
+
+# For SciPy
+setenv MKL $lib/libmkl_core.so
+
 prepend-path LD_LIBRARY_PATH $lib
 prepend-path MANPATH $root/../man/en_US
 prepend-path NLSPATH $lib/locale/en_US
