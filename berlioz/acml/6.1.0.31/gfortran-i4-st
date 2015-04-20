@@ -1,4 +1,4 @@
-#%Module1.0
+#%Module
 
 # ======================================================================
 # Useful Local Variables
@@ -12,28 +12,35 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.1
+set ver 6.1.0.31
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "GNU Compiler Collection - GNU Version 4.9 Installed via HomeBrew"
+module-whatis "ACML, AMD Core Math Library, version $ver, to use with GNU compilers, 4-byte integers, serial."
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# Default version is Clang gcc - this modulefile switches to GNU version
+# module commands
+conflict acml
 
-conflict gcc
+# ====================================================================
+# Local settings
+# ====================================================================
 
-set root $::env(apps)/$modfile
+set root $::env(apps)/acml/$ver/gfortran64
 
-set-alias gcc gcc-4.9
-set-alias gcov gcov-4.9
-set-alias gcc-ar gcc-ar-4.9
-set-alias gcc-ranlib gcc-ranlib-4.9
-set-alias gcc-nm gcc-nm-4.9
-set-alias cpp cpp-4.9
-set-alias g++ g++-4.9
+setenv ACML_ROOT $root
+prepend-path LD_LIBRARY_PATH   $root/lib
+prepend-path CMAKE_PREFIX_PATH $root
+prepend-path ACML_SCRIPT_PATH  $root/lib/resources
+
+# ====================================================================
+# Compiler wrapper modifications
+# ====================================================================
+
+#prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
+#prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib -lacml"

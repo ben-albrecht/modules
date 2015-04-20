@@ -1,39 +1,42 @@
 #%Module1.0
 
-source $::env(MODULEPROCS)
+source  $env(MODULEPROCS)
+
 
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
 
-#  $modfile      : This module's file path relative to modulefiles root
-#  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
-#  $ver          : Module version (same as $modfile_base for now)
-
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
-set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+# modulefile (this file relative to modulefiles root)
+set modfile [ module-info name ]
+# modulefile subdirectories in a list
+set l_modfile [ split "$modfile" / ]
+# basename
+set modfile_base [ lindex $l_modfile [ expr [ llength $l_modfile ] - 1 ] ]
+# basename is usually the version number
 set ver $modfile_base
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Anaconda - Scientific Python Distribution"
+module-whatis "OpenBLAS: Open source architecture-optimized BLAS"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-conflict anaconda
+conflict blas
+conflict openblas
 
 # ====================================================================
 # Local settings
 # ====================================================================
-
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/$modfile_base
+set root /usr/local/opt/openblas
 
-
-prepend-path PATH    $root/bin
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+prepend-path -d " " LDFLAGS     "-L$root/lib"
+prepend-path -d " " CPPFLAGS    "-I$root/include"
