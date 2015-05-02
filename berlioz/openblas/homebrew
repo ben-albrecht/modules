@@ -1,0 +1,42 @@
+#%Module1.0
+
+source  $env(MODULEPROCS)
+
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+# modulefile (this file relative to modulefiles root)
+set modfile [ module-info name ]
+# modulefile subdirectories in a list
+set l_modfile [ split "$modfile" / ]
+# basename
+set modfile_base [ lindex $l_modfile [ expr [ llength $l_modfile ] - 1 ] ]
+# basename is usually the version number
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "OpenBLAS: Open source architecture-optimized BLAS"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict blas
+conflict openblas
+
+# ====================================================================
+# Local settings
+# ====================================================================
+# this is only sets a variable to be used in this modulefile
+set root /usr/local/opt/openblas
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+prepend-path -d " " LDFLAGS     "-L$root/lib"
+prepend-path -d " " CPPFLAGS    "-I$root/include"

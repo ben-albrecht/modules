@@ -1,0 +1,60 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.3
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem $modfile"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict qchem
+
+module load compilers/gcc/4.8.1
+module load acml/6.1.0.31/gfortran-i4-st
+
+set root $::env(opt)/build/$modfile
+
+setenv QC          $root
+setenv QCSOURCE    $root
+setenv QC_EXT_LIBS $::env(opt)/build/qchem/qc_ext_libs
+
+setenv QCAUX       $root/../qcaux
+setenv QCREF       $root/../qcref
+
+setenv QCSCRATCH   $::env(scratch)/qchem
+setenv QCPLATFORM  MACOSX
+
+prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR vim
+
+# Compiling
+
+setenv QCHEM_CXX_FLAGS      -O0
+setenv QCHEM_Fortran_FLAGS  -O0
+
+# Test Jobs
+setenv QCREF   /home/ben/qchem/qchem_dailyref
