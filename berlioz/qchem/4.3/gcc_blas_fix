@@ -18,7 +18,7 @@ set ver 4.3
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem $modfile"
+module-whatis "Q-Chem 4.3, trunk_release"
 
 # ====================================================================
 # Dependencies
@@ -26,30 +26,29 @@ module-whatis "Q-Chem $modfile"
 
 conflict qchem
 
-module load compilers/gcc/4.8.1
-module load acml/6.1.0.31/gfortran-i4-st
+module load compilers/gcc
 
 set root $::env(opt)/build/$modfile
+prepend-path PATH   $root/bin
 
-setenv QC          $root
-setenv QCSOURCE    $root
-setenv QC_EXT_LIBS $::env(opt)/build/qchem/qc_ext_libs
+setenv QC_EXT_LIBS  $::env(opt)/build/qchem/qc_ext_libs
+setenv QCSCRATCH    $::env(scratch)/qchem
 
-setenv QCAUX       $root/../qcaux
-setenv QCREF       $root/../qcref
+setenv QC           $root
+setenv QCSOURCE     $root
 
-setenv QCSCRATCH   $::env(scratch)/qchem
-setenv QCPLATFORM  MACOSX
+setenv QCAUX        $::env(QC_EXT_LIBS)/../qcaux
+setenv QREF         $::env(QC_EXT_LIBS)/../qcref
+setenv QCPLATFORM   MACOSX
 
-prepend-path PATH  $root/bin
 
 set svnroot https://jubilee.q-chem.com/svnroot
-setenv SVNROOT  $svnroot
-setenv QCSVN    $svnroot/qchem
-setenv QCREFSVN $svnroot/qchem_dailyref
-setenv QCAUXSVN $svnroot/qcaux
-setenv QCMANUAL $svnroot/qchem_manual
-setenv SVN_EDITOR vim
+setenv SVNROOT      $svnroot
+setenv QCSVN        $svnroot/qchem
+setenv QCREFSVN     $svnroot/qchem_dailyref
+setenv QCAUXSVN     $svnroot/qcaux
+setenv QCMANUAL     $svnroot/qchem_manual
+setenv SVN_EDITOR   vim
 
 # Compiling
 
