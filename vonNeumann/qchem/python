@@ -14,12 +14,11 @@ set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver 4.1
 
-#module-version "default"
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.2, Lambrecht Group Git Repository"
+module-whatis "Q-Chem Python Interface - Lambrecht Group Git Repository"
 
 # ====================================================================
 # Dependencies
@@ -27,6 +26,10 @@ module-whatis "Q-Chem 4.2, Lambrecht Group Git Repository"
 
 # Check for conflicts
 conflict qchem
+
+# Load build dependencies
+module load compilers/intel
+module load mkl/11.1.1/icc-st
 
 # Set $root to $apps/(this file's name)
 set root $::env(apps)/$modfile
@@ -63,4 +66,8 @@ setenv QCHEM_Fortran_FLAGS  -O0
 # Test Jobs
 setenv QCREF   /home/ben/qchem/qchem_dailyref
 
-
+# Build script
+set-alias qconfig \
+{
+    qcmake.py --compiler=intel --math=mkl --optimization=0 --configure debug nointracule nomgc nolibdftn nonewpath2
+}
