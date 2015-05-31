@@ -12,47 +12,23 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.3
+set ver 2012
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.3, Latest Trunk Build Release"
+module-whatis "MolPro 2012"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# Check for conflicts
-conflict qchem
+conflict molpro
 
-# Load build dependencies
-module load compilers/intel
-module load mkl/11.1.1/icc-st
+module load compilers/gcc
 
-# Set $root to $apps/(this file's name)
-set root $::env(apps)/$modfile
+set root $::env(apps)/$modfile/molpros_2012_1_Linux_x86_64_i8
+prepend-path PATH   $root/bin
 
-# Q-Chem variables for compiling
-setenv QCSCRATCH   $::env(scratch)/qchem
-setenv QC          $root
-setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS $root/../qc_ext_libs
-setenv QCREF       $root/../qcref
-setenv QCPLATFORM  LINUX_Ix86_64
-
-# External Libs
-setenv ACMLROOT    $::env(QC_EXT_LIBS)/ACML
-
-# Add qchem to PATH
-prepend-path PATH  $root/bin
-
-# SVN jubilee stuff
-set svnroot https://jubilee.q-chem.com/svnroot
-setenv SVNROOT  $svnroot
-setenv QCSVN    $svnroot/qchem
-setenv QCREFSVN $svnroot/qchem_dailyref
-setenv QCAUXSVN $svnroot/qcaux
-setenv QCMANUAL $svnroot/qchem_manual
-setenv SVN_EDITOR vim
+setenv MP           $::env(opt)/build/$modfile
