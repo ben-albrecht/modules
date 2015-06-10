@@ -28,7 +28,7 @@ conflict qchem
 
 module load compilers/gcc
 
-set root $::env(opt)/build/$modfile
+set root $::env(opt)/build/qchem/$modfile_base
 prepend-path PATH   $root/bin
 
 setenv QC_EXT_LIBS  $::env(opt)/build/qchem/qc_ext_libs

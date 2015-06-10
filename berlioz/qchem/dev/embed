@@ -18,7 +18,7 @@ set ver 4.3
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.3, trunk_release"
+module-whatis "Q-Chem 4.3, developmental branch for gen_embedman"
 
 # ====================================================================
 # Dependencies
@@ -28,7 +28,7 @@ conflict qchem
 
 module load compilers/gcc
 
-set root $::env(opt)/build/$modfile
+set root $::env(opt)/dev/qchem/$modfile_base
 prepend-path PATH   $root/bin
 
 setenv QC_EXT_LIBS  $::env(opt)/build/qchem/qc_ext_libs
@@ -57,3 +57,8 @@ setenv QCHEM_Fortran_FLAGS  -O0
 
 # Test Jobs
 setenv QCREF   /home/ben/qchem/qchem_dailyref
+
+# Build Script
+set-alias qconfig {
+    qcmake.py  --compiler=gcc --math=openblas --optimization=0 --configure nointracule nomgc noopt2 nolibdftn debug
+}

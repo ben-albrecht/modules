@@ -28,7 +28,7 @@ conflict qchem
 
 module load compilers/gcc
 
-set root $::env(opt)/build/$modfile
+set root $::env(opt)/dev/qchem/$modfile_base
 prepend-path PATH   $root/bin
 
 setenv QC_EXT_LIBS  $::env(opt)/build/qchem/qc_ext_libs
@@ -52,13 +52,8 @@ setenv SVN_EDITOR   vim
 
 # Compiling
 
-setenv QCHEM_CXX_FLAGS      -O3
-setenv QCHEM_Fortran_FLAGS  -O3
+setenv QCHEM_CXX_FLAGS      -O0
+setenv QCHEM_Fortran_FLAGS  -O0
 
 # Test Jobs
 setenv QCREF   /home/ben/qchem/qchem_dailyref
-
-set-alias qconfig {
-    qcmake.py --compiler=openblas --math=gcc --optimization=3 --configure nointracule nomgc noopt2 nolibdftn nonewpath2 gcc openblas debug
-}
-
