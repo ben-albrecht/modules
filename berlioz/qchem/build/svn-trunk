@@ -59,6 +59,6 @@ setenv QCHEM_Fortran_FLAGS  -O3
 setenv QCREF   /home/ben/qchem/qchem_dailyref
 
 set-alias qconfig {
-    qcmake.py --compiler=openblas --math=gcc --optimization=3 --configure nointracule nomgc noopt2 nolibdftn nonewpath2 gcc openblas debug
+    qcmake.py --compiler=gcc --math=openblas --optimization=3 --configure nointracule nomgc  nonewpath2 debug
 }
 
