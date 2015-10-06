@@ -1,0 +1,36 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.3
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Homebrew install - Adds Homebrew binary to path.
+
+To use Homebrew install as it is meant to be:
+`module unload chapel && brew link chapel`"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict chapel
+
+set root /usr/local/Cellar/chapel/1.12.0/libexec
+
+prepend-path PATH   $root/bin/darwin
+
+setenv CHPL_HOME    $root
