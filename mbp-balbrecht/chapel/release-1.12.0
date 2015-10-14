@@ -26,10 +26,12 @@ module-whatis "Master Branch"
 
 conflict chapel
 
-set root $::env(opt)/dev/chapel/$modfile_base
-prepend-path PATH   $root/bin/darwin
+prepend-path PATH           $root/bin/darwin
+prepend-path PATH           $root/util
+prepend-path MANPATH        $root/man
 
-setenv CHPL_HOME    $root
+setenv CHPL_HOME            $root
+setenv CHPL_HOST_PLATFORM   darwin
 
 # Set this to run multilocale programs on just your laptop
 setenv GASNET_SPAWNFN   L

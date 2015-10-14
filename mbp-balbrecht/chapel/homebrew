@@ -31,6 +31,9 @@ conflict chapel
 
 set root /usr/local/Cellar/chapel/1.12.0/libexec
 
-prepend-path PATH   $root/bin/darwin
+prepend-path PATH           $root/bin/darwin
+prepend-path PATH           $root/util
+prepend-path MANPATH        $root/man
 
-setenv CHPL_HOME    $root
+setenv CHPL_HOME            $root
+setenv CHPL_HOST_PLATFORM   darwin
