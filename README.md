@@ -1,4 +1,4 @@
-http://sourceforge.net/p/modules/wiki/FAQ/
+[Modules FAQ](http://sourceforge.net/p/modules/wiki/FAQ/)
 
 # How to Set Up Modules
 ## Install modules package
@@ -10,4 +10,4 @@ http://sourceforge.net/p/modules/wiki/FAQ/
 
 ## Additions to bashrc
 
-* module use <directory that contains all module directories>
+* module use <directory that contains all module directory>
