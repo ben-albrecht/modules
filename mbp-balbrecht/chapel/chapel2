@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 1.12
+set ver 4.3
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Master Branch"
+module-whatis "Development Branch"
 
 # ====================================================================
 # Dependencies
@@ -34,6 +34,7 @@ prepend-path MANPATH        $root/man
 
 setenv CHPL_HOME            $root
 setenv CHPL_HOST_PLATFORM   darwin
+setenv CHPL_DEVELOPER       true
 
 # Set this to run multilocale programs on just your laptop
 setenv GASNET_SPAWNFN   L
