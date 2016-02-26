@@ -46,10 +46,10 @@ prepend-path DYLD_LIBRARY_PATH $root/lib
 
 prepend-path CPLUS_INCLUDE_PATH $root/include/c++/$ver
 
-
-setenv CC   "gcc"
-setenv CXX  "g++"
-setenv FC   "gfortran"
+# Let the program Makefile handle this
+#setenv CC   "gcc"
+#setenv CXX  "g++"
+#setenv FC   "gfortran"
 
 # I don't even know what this does
 prepend-path -d " " LDFLAGS      "-lm"
