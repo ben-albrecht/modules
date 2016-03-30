@@ -1,0 +1,47 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 1.12.0
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Master Branch"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict chapel
+
+set root $::env(opt)/dev/chapel/$modfile_base
+
+prepend-path PATH           $root/bin/darwin
+prepend-path PATH           $root/util
+prepend-path MANPATH        $root/man
+
+setenv CHPL_HOME            $root
+setenv CHPL_HOST_PLATFORM   darwin
+
+# Set this to run multilocale programs on just your laptop
+setenv GASNET_SPAWNFN   L
+
+# Avoids some weird gasnet issue when working over the VPN
+setenv GASNET_MASTERIP  127.0.0.1
+setenv GASNET_WORKERIP  127.0.0.0
+
+# Turn off GMP and REGEX for chpl install speedup
+setenv CHPL_GMP         none
+setenv CHPL_REGEXP      none
