@@ -45,3 +45,6 @@ setenv GASNET_WORKERIP  127.0.0.0
 # Turn off GMP and REGEX for chpl install speedup
 setenv CHPL_GMP         none
 setenv CHPL_REGEXP      none
+
+# Module paths
+setenv CHPL_MODULE_PATH $root/test/release/examples/benchmarks/miniMD/helpers
