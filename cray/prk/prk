@@ -1,0 +1,62 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Cray modules for running parallel research kernels (prk)"
+
+conflict prk
+
+#name of C compiler, e.g. icc, xlc, gcc
+module load gcc
+setenv prk_CC gcc
+
+#name of MPI C compiler, e.g. mpiicc, mpicc
+module load cray-mpich
+setenv prk_MPICC gcc
+
+#name of compile line flag enabling OpenMP, e.g. -openmp, -qopenmp, -fopenmp
+setenv prk_OPENMPFLAG -fopenmp
+
+############################   OPTIONAL #########################
+
+#name of C++ compiler (to be used in MPI context for Grappa), e.g. mpigxx, mpiicpc
+setenv prk_CXX g++
+
+## TODO
+# #name of UPC compiler, e.g. gupc, cc, upcc
+# UPCC=
+# 
+# #name of compile line flag enabling UPC if necessary, e.g. -h upc
+# UPCFLAG=
+# 
+# #name of MPI C compiler (to be used in Fine-Grain MPI context), e.g. mpicc
+# FGMPICC=
+# 
+# #location where SHMEM is installed, e.g. $(HOME)/oshmpi-install
+# SHMEMTOP=
+# 
+# #name of C compiler (to be used in MPI context of OpenSHMEM), e.g. $(MPICC)
+# SHMEMCC=
+# 
+# #location where Charm++ is installed, e.g. $(HOME)/charm/mpi-linux-x86_64-ifort-smp-mpicxx
+# CHARMTOP=
+# 
+# #location where Grappa is installed, e.g. $(GRAPPA_PREFIX) if you've done "source <grappa install dir>/bin/settings.sh"
+# GRAPPATOP=$(GRAPPA_PREFIX)
+# 
+# #location where Fine-Grain MPI is installed, e.g. $(HOME)/fgmpi-install
+# FGMPITOP=

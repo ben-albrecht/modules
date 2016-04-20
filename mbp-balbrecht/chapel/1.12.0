@@ -12,6 +12,7 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 1.12.0
 
 # ======================================================================
 # Documentation

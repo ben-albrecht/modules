@@ -17,7 +17,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Master Branch"
+module-whatis "GASNET Build"
 
 # ====================================================================
 # Dependencies
@@ -33,9 +33,14 @@ prepend-path MANPATH        $root/man
 
 setenv CHPL_HOME            $root
 setenv CHPL_HOST_PLATFORM   darwin
+setenv CHPL_DEVELOPER       true
+setenv CHPL_TARGET_ARCH     none
+setenv CHPL_COMM            gasnet
 
 # Set this to run multilocale programs on just your laptop
-setenv GASNET_SPAWNFN   L
+setenv GASNET_SPAWNFN       L
+setenv GASNET_ROUTE_OUTPUT  0
+setenv GASNET_QUIET         1
 
 # Avoids some weird gasnet issue when working over the VPN
 setenv GASNET_MASTERIP  127.0.0.1
@@ -44,3 +49,14 @@ setenv GASNET_WORKERIP  127.0.0.0
 # Turn off GMP and REGEX for chpl install speedup
 setenv CHPL_GMP         none
 setenv CHPL_REGEXP      none
+
+# Bump the timeout slightly just because we're oversubscribed
+setenv CHPL_TEST_TIMEOUT    500
+
+# Set these to use oversubscription to help with timeouts
+setenv QT_AFFINITY                              no
+setenv CHPL_QTHREAD_ENABLE_OVERSUBSCRIPTION     1
+
+# Not sure what this one does
+setenv CHPL_GASNET_CFG_OPTIONS  --disable-ibv
+

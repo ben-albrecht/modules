@@ -12,6 +12,7 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 1.11.0
 
 # ======================================================================
 # Documentation
@@ -24,8 +25,6 @@ module-whatis "Master Branch"
 # ====================================================================
 
 conflict chapel
-
-set root $::env(opt)/dev/chapel/$modfile_base
 
 prepend-path PATH           $root/bin/darwin
 prepend-path PATH           $root/util

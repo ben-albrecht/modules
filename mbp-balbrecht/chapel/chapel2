@@ -12,13 +12,12 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 1.12
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Master Branch"
+module-whatis "Development Branch"
 
 # ====================================================================
 # Dependencies
@@ -26,12 +25,15 @@ module-whatis "Master Branch"
 
 conflict chapel
 
+set root $::env(opt)/dev/chapel/$modfile_base
+
 prepend-path PATH           $root/bin/darwin
 prepend-path PATH           $root/util
 prepend-path MANPATH        $root/man
 
 setenv CHPL_HOME            $root
 setenv CHPL_HOST_PLATFORM   darwin
+setenv CHPL_DEVELOPER       true
 
 # Set this to run multilocale programs on just your laptop
 setenv GASNET_SPAWNFN   L
