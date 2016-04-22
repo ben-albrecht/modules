@@ -35,13 +35,6 @@ setenv CHPL_HOME            $root
 setenv CHPL_HOST_PLATFORM   cray-xc
 setenv CHPL_DEVELOPER       true
 
-# Set this to run multilocale programs on just your laptop
-setenv GASNET_SPAWNFN   L
-
-# Avoids some weird gasnet issue when working over the VPN
-setenv GASNET_MASTERIP  127.0.0.1
-setenv GASNET_WORKERIP  127.0.0.0
-
 # Turn off GMP and REGEX for chpl install speedup
 setenv CHPL_GMP         none
 setenv CHPL_REGEXP      none
