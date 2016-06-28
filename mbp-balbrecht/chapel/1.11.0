@@ -43,3 +43,19 @@ setenv GASNET_WORKERIP  127.0.0.0
 # Turn off GMP and REGEX for chpl install speedup
 setenv CHPL_GMP         none
 setenv CHPL_REGEXP      none
+
+# Convenience envs
+setenv    CH          $::env(CHPL_HOME)
+
+# Convenience aliases
+set-alias pc          "$::env(CHPL_HOME)/util/printchplenv"
+set-alias st          "$::env(CHPL_HOME)/util/start_test"
+set-alias ch          "cd $::env(CHPL_HOME)"
+set-alias chtest      "cd $::env(CHPL_HOME)/test"
+set-alias chutil      "cd $::env(CHPL_HOME)/util"
+set-alias chcomp      "cd $::env(CHPL_HOME)/compiler"
+set-alias chmods      "cd $::env(CHPL_HOME)/modules"
+set-alias chrt        "cd $::env(CHPL_HOME)/runtime"
+set-alias chtp        "cd $::env(CHPL_HOME)/third-party"
+set-alias chfailures  "cat $::env(CHPL_HOME)/test/Logs/*summary"
+
