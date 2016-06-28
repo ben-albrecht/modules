@@ -17,13 +17,19 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Development Branch on css"
+module-whatis "Overlaid Chapel 1.12"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 conflict chapel
+#conflict gcc
+conflict craype-hugepages8M
+
+module load gcc/4.9.3
+module load cray-mpich
+module load craype-hugepages16M
 
 set root /cray/css/users/balbrecht/release/1.12
 
@@ -33,3 +39,28 @@ prepend-path MANPATH        $root/man
 
 setenv CHPL_HOME            $root
 setenv CHPL_HOST_PLATFORM   cray-xc
+
+setenv CHPL_COMM            ugni
+
+# Absolutely no idea what this stuff is all about
+set network seastar
+if { [ info exists env(XTPE_NETWORK_TARGET) ] } {
+    set network $env(XTPE_NETWORK_TARGET)
+} elseif { [ info exists env(CRAYPE_NETWORK_TARGET) ] } {
+    set network $env(CRAYPE_NETWORK_TARGET)
+}
+set accel 0
+if { [ info exists env(CRAY_ACCEL_TARGET) ] } {
+    set accel 1
+}
+
+setenv MPICH_GNI_DYNAMIC_CONN disabled
+
+# Set CHPL_HOST_PLATFORM
+if { [string match gemini $network] } {
+    set CHPL_HOST_PLATFORM cray-xe
+} elseif { [string match aries $network] } {
+    set CHPL_HOST_PLATFORM cray-xc
+} else {
+    set CHPL_HOST_PLATFORM cray-xt
+}
