@@ -29,7 +29,7 @@ module-whatis "The GNU compiler collection (C, C++, Fortran 77/90/95)"
 
 conflict gcc
 
-set root [ exec /usr/local/bin/brew info gcc | sed -n {4 p} | awk {{print $1}} ]
+set root [ exec /usr/local/bin/brew info gcc | grep \* | awk {{print $1}} ]
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
@@ -51,6 +51,7 @@ prepend-path CPLUS_INCLUDE_PATH $root/include/c++/$ver
 #setenv CXX  "g++"
 #setenv FC   "gfortran"
 
+prepend-path --delim " " LDFLAGS -L$root/lib/gcc/$majorver
 # I don't even know what this does
 prepend-path -d " " LDFLAGS      "-lm"
 

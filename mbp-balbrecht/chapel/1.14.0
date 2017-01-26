@@ -12,15 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 1.14.0
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Homebrew install - Adds Homebrew binary to path.
-
-To use Homebrew install as it is meant to be:
-`module unload chapel && brew link chapel`"
+module-whatis "1.14.0 Release"
 
 # ====================================================================
 # Dependencies
@@ -28,7 +26,7 @@ To use Homebrew install as it is meant to be:
 
 conflict chapel
 
-set root /usr/local/Cellar/chapel/1.13.0/libexec
+set root $::env(opt)/dev/chapel/$modfile_base
 
 prepend-path PATH           $root/bin/darwin
 prepend-path PATH           $root/util
@@ -36,6 +34,17 @@ prepend-path MANPATH        $root/man
 
 setenv CHPL_HOME            $root
 setenv CHPL_HOST_PLATFORM   darwin
+
+# Set this to run multilocale programs on just your laptop
+setenv GASNET_SPAWNFN   L
+
+# Avoids some weird gasnet issue when working over the VPN
+setenv GASNET_MASTERIP  127.0.0.1
+setenv GASNET_WORKERIP  127.0.0.0
+
+# Turn off GMP and REGEX for chpl install speedup
+setenv CHPL_GMP         none
+setenv CHPL_REGEXP      none
 
 # Convenience envs
 setenv    CH          $::env(CHPL_HOME)

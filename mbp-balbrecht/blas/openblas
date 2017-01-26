@@ -1,0 +1,38 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base openblas
+set ver 0.2.18
+set majorver 0
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "OpenBLAS via HomeBrew"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# Default version is Clang gcc - this modulefile switches to GNU version
+
+conflict blas
+
+set root /usr/local/opt/openblas
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+prepend-path LD_LIBRARY_PATH $root/lib
+prepend-path --delim " " LDFLAGS -L$root/lib
+prepend-path --delim " " CFLAGS  -I$root/include

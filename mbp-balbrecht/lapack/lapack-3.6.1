@@ -1,0 +1,42 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base openblas
+set ver 3.6.1
+set majorver 3
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "LAPACK from netlib"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# Default version is Clang gcc - this modulefile switches to GNU version
+
+conflict lapack
+
+module load gcc
+
+set root /Users/balbrecht/opt/dev/lapack/lapack-3.6.1
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+prepend-path LD_LIBRARY_PATH $root
+prepend-path --delim " " LDFLAGS -L$root
+prepend-path --delim " " CFLAGS  -I$root/LAPACKE/include
+# Should probably be in CBLAS?
+prepend-path --delim " " CFLAGS  -I$root/CBLAS/include
