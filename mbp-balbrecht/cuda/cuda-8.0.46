@@ -17,7 +17,7 @@ set majorver 3
 # Documentation
 # ======================================================================
 
-module-whatis "LAPACK from netlib"
+module-whatis "CUDA 8.0"
 
 # ====================================================================
 # Dependencies
