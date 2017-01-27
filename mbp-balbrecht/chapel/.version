@@ -3,4 +3,4 @@
 ##  version file for Chapel
 ##
 
-set ModulesVersion "chapel"
+set ModulesVersion "1"
